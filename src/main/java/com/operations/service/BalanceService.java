@@ -1,5 +1,6 @@
 package com.operations.service;
 
+import com.operations.entity.Operation;
 import com.operations.repository.BalanceRepository;
 import com.operations.utils.ErrorText;
 import lombok.RequiredArgsConstructor;
@@ -7,6 +8,8 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,4 +39,7 @@ public class BalanceService {
         return balanceRepository.takeMoney(userId, amount);
     }
 
+    public List<Operation> getOperationList(Long user_id, LocalDateTime from, LocalDateTime to) {
+        return balanceRepository.getOperationList(user_id, from, to);
+    }
 }
