@@ -46,6 +46,15 @@ public class OperationsController {
         return new TakeMoneyResponse(result.getFirst(), result.getSecond());
     }
 
+    @PostMapping("/transferMoney")
+    @ResponseBody
+    public TransferMoneyResponse transferMoney(@RequestBody TransferMoneyRequest request) {
+
+        Pair<Integer, String> result = balanceService.transferMoney(request.getUser_id(), request.getTo_user_id(), request.getAmount());
+
+        return new TransferMoneyResponse(result.getFirst(), result.getSecond());
+    }
+
     @PostMapping("/getOperationList")
     @ResponseBody
     public GetOperationListResponse takeMoney(@RequestBody GetOperationListRequest request) {

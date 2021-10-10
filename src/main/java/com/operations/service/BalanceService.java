@@ -18,25 +18,34 @@ public class BalanceService {
 
     public Pair<BigDecimal, String> getBalance(Long userId) {
 
-        if (userId <= 0) return Pair.of(BigDecimal.valueOf(-1), ErrorText.USER_ID_HAVE_TO_BE_POSITIVE.getErrorTest());
+        if (userId <= 0) return Pair.of(BigDecimal.valueOf(-1), ErrorText.USER_ID_HAVE_TO_BE_POSITIVE.getErrorText());
 
         return balanceRepository.getBalance(userId);
     }
 
     public Pair<Integer, String>  putMoney(Long userId, BigDecimal amount) {
 
-        if (userId <= 0) return Pair.of(0, ErrorText.USER_ID_HAVE_TO_BE_POSITIVE.getErrorTest());
-        if (amount.compareTo(BigDecimal.ZERO) <= 0) return Pair.of(0, ErrorText.AMOUNT_HAVE_TO_BE_POSITIVE.getErrorTest());
+        if (userId <= 0) return Pair.of(0, ErrorText.USER_ID_HAVE_TO_BE_POSITIVE.getErrorText());
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) return Pair.of(0, ErrorText.AMOUNT_HAVE_TO_BE_POSITIVE.getErrorText());
 
         return balanceRepository.putMoney(userId, amount);
     }
 
     public Pair<Integer, String>  takeMoney(Long userId, BigDecimal amount) {
 
-        if (userId <= 0) return Pair.of(0, ErrorText.USER_ID_HAVE_TO_BE_POSITIVE.getErrorTest());
-        if (amount.compareTo(BigDecimal.ZERO) <= 0) return Pair.of(0, ErrorText.AMOUNT_HAVE_TO_BE_POSITIVE.getErrorTest());
+        if (userId <= 0) return Pair.of(0, ErrorText.USER_ID_HAVE_TO_BE_POSITIVE.getErrorText());
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) return Pair.of(0, ErrorText.AMOUNT_HAVE_TO_BE_POSITIVE.getErrorText());
 
         return balanceRepository.takeMoney(userId, amount);
+    }
+
+    public Pair<Integer, String> transferMoney(Long userId, Long toUserId, BigDecimal amount) {
+
+        if (userId <= 0 || toUserId <=0) return Pair.of(0, ErrorText.USER_ID_HAVE_TO_BE_POSITIVE.getErrorText());
+
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) return Pair.of(0, ErrorText.AMOUNT_HAVE_TO_BE_POSITIVE.getErrorText());
+
+        return balanceRepository.transferMoney(userId, toUserId, amount);
     }
 
     public List<Operation> getOperationList(Long user_id, LocalDateTime from, LocalDateTime to) {

@@ -6,14 +6,14 @@ public enum ErrorText {
     AMOUNT_HAVE_TO_BE_POSITIVE("Сумма должна быть > 0"),
     INSUFFICIENT_FUNDS("Недостаточно средств");
 
-    private String errorTest;
+    private String errorText;
 
-    ErrorText(String errorTest) {
-        this.errorTest = errorTest;
+    ErrorText(String errorText) {
+        this.errorText = errorText;
     }
 
-    public String getErrorTest() {
-        return errorTest;
+    public String getErrorText() {
+        return errorText;
     }
 
 }
