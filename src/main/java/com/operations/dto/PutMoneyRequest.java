@@ -3,7 +3,6 @@ package com.operations.dto;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Required;
 
 import java.math.BigDecimal;
 
